@@ -9,9 +9,10 @@ apps:
     webserver:
       command: bin/webserver
       daemon: simple
+      restart-condition: always
       plugs:
         - network
-        - network-control
+        - network-bind
 
 parts:
    gohttp:
