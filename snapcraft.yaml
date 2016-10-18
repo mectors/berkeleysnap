@@ -1,0 +1,24 @@
+name: berkeleysnap
+version: 0.1
+summary: Runs Berkeley's Snap - Scratch
+description: This snap is the Berkeley Snap version of Scratch
+confinement: strict  # use "strict" to enforce system access only via declared interfaces
+grade: stable # use "stable" to assert the snap quality
+
+apps:
+    webserver:
+      command: bin/webserver
+      daemon: simple
+      plugs:
+        - network
+        - network-control
+
+parts:
+   gohttp:
+     plugin: go
+     source: src/webserver
+   getsnap:
+     plugin: dump
+     source: https://github.com/jmoenig/Snap--Build-Your-Own-Blocks.git
+     organize:
+       '*': web/
